@@ -1,18 +1,39 @@
-export const plugins = {
-  'postcss-preset-env': {
-    autoprefixer: {
-      overrideBrowserslist: ['> 0.5%', 'last 2 versions', 'not dead']
+// export const plugins = {
+//   'postcss-preset-env': {
+//     autoprefixer: {
+//       overrideBrowserslist: ['> 0.5%', 'last 2 versions', 'not dead']
+//     },
+//     stage: 3
+//   },
+//   'postcss-px-to-viewport': {
+//     unitToConvert: 'px',
+//     viewportWidth: 375,
+//     viewportHeight: 667,
+//     unitPrecision: 5,
+//     viewportUnit: 'vw',
+//     fontViewportUnit: 'vw',
+//     minPixelValue: 1,
+//     mediaQuery: false
+//   }
+// }
+module.exports = {
+  plugins: {
+    // your PostCSS plugins here
+    'postcss-preset-env': {
+      autoprefixer: {
+        overrideBrowserslist: ['> 0.5%', 'last 2 versions', 'not dead']
+      },
+      stage: 3
     },
-    stage: 3
-  },
-  'postcss-px-to-viewport': {
-    unitToConvert: 'px',
-    viewportWidth: 375,
-    viewportHeight: 667,
-    unitPrecision: 5,
-    viewportUnit: 'vw',
-    fontViewportUnit: 'vw',
-    minPixelValue: 1,
-    mediaQuery: false
+    'postcss-px-to-viewport': {
+      unitToConvert: 'px',
+      viewportWidth: 375,
+      viewportHeight: 667,
+      unitPrecision: 5,
+      viewportUnit: 'vw',
+      fontViewportUnit: 'vw',
+      minPixelValue: 1,
+      mediaQuery: false
+    }
   }
-};
+}

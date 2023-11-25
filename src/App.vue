@@ -1,5 +1,4 @@
-<template>  
-  <van-button class="button" type="primary">点击</van-button>
+<template>
+  <router-view></router-view>
 </template>
-<style>
-</style>
+<style></style>

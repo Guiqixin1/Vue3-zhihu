@@ -1,20 +1,22 @@
-// export default  {
-//     css: {
-//       loaderOptions: {
-//         postcss: {
-//           config: {
-//             path: 'postcss.config.js'
-//           }
-//         }
-//       }
-//     }
-//   }
-export const css = {
-  loaderOptions: {
-    postcss: {
-      config: {
-        path: 'postcss.config.js'
+module.exports = {
+  css: {
+    loaderOptions: {
+      postcss: {
+        config: {
+          path: 'postcss.config.js'
+        }
       }
     }
   }
-};
+  // devServer: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://news-at.zhihu.com',
+  //       changeOrigin: true,
+  //       pathRewrite: {
+  //         '^/api': '/api/4'
+  //       }
+  //     }
+  //   }
+  // }
+}

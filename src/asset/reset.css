@@ -1,0 +1,44 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding */
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+ol, ul, li,
+figure,
+figcaption,
+blockquote,
+dl, dd,
+form,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+table,
+td, th {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove list styles (bullet points) */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove table spacing */
+table {
+  border-collapse: collapse;
+}
+
+/* Reset anchor styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
