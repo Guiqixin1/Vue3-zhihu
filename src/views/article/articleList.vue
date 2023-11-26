@@ -1,7 +1,9 @@
 <script setup>
 import { defineProps, ref } from 'vue'
-import { getArticelbefore } from '@/api/article'
-
+// import { getArticledetail } from '@/api/article'
+// 引入路由
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const loading = ref(false)
 const finished = ref(false)
 const props = defineProps({
@@ -12,20 +14,25 @@ const props = defineProps({
     type: String
   }
 })
-const now = parseInt(props.date)
-const time = 1
+// const now = parseInt(props.date)
+// const time = 1
 
-// 当组件滚动到底部时，出发onLoad事件
-const onLoad = async () => {
-  // 异步更新数据
-  console.log(11)
-  // 加载状态结束
-  // loading.value = false
+// // 当组件滚动到底部时，出发onLoad事件
+// const onLoad = async () => {
+//   // 异步更新数据
+//   console.log(11)
+//   // 加载状态结束
+//   // loading.value = false
+// }
+
+const goDetail = (id) => {
+  //动态路由传参
+  router.push(`/article/detail/${id}`)
 }
 </script>
 <template>
   <ul>
-    <li v-for="item in list" :key="item.id">
+    <li v-for="item in list" :key="item.id" @click="goDetail(item.id)">
       <div class="main">
         <div class="left" style="overflow: hidden">
           <div class="title">

@@ -3,7 +3,9 @@ import { ref } from 'vue'
 import image from '@/asset/TX1582_05.jpg'
 import articleList from '@/views/article/articleList.vue'
 import { getArticelLaest } from '@/api/article'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const list = ref([])
 const date = ref('')
 const month = ref('')
@@ -21,6 +23,9 @@ const getNew = async () => {
   imageList.value = res.data.top_stories
 }
 getNew()
+const MouseEvent = (id) => {
+  router.push(`/article/detail/${id}`)
+}
 </script>
 <template>
   <!-- 顶部导航栏是固定定位 -->
@@ -46,6 +51,7 @@ getNew()
       v-for="item in imageList"
       :key="item.id"
       style="height: 100vw; width: 100vw; position: relative"
+      @click="MouseEvent(item.id)"
     >
       <img :src="item.image" style="width: 100vw" />
       <div

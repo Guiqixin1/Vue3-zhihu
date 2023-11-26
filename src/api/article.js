@@ -9,3 +9,8 @@ export const getArticelLaest = () => {
 export const getArticelbefore = (date) => {
   return request.get(`/news/before/${date}`)
 }
+
+// 获取文章内容详情
+export const getArticledetail = (id) => {
+  return request.get(`/news/${id}`)
+}
