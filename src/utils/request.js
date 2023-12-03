@@ -4,7 +4,7 @@ import { showLoadingToast, closeToast } from 'vant'
 import 'vant/es/toast/style'
 const request = axios.create({
   baseURL: '/baseurl',
-  timeout: 7000
+  timeout: 10000
 })
 
 // 添加请求拦截器

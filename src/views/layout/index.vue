@@ -26,6 +26,14 @@ getNew()
 const MouseEvent = (id) => {
   router.push(`/article/detail/${id}`)
 }
+
+const updateList = (newList, date) => {
+  newList.forEach((item) => {
+    item.date = date
+  })
+  console.log(newList, date)
+  list.value.push(...newList)
+}
 </script>
 <template>
   <!-- 顶部导航栏是固定定位 -->
@@ -76,17 +84,25 @@ const MouseEvent = (id) => {
     </van-swipe-item>
   </van-swipe>
   <!-- 文章列表 -->
-  <articleList :list="list" :date="date"></articleList>
+  <articleList
+    :list="list"
+    :date="date"
+    @update:list="updateList"
+  ></articleList>
 </template>
 
 <style lang="scss" scoped>
 .header {
   width: 100vw;
   height: 14vw;
-  // background-color: beige;
   display: flex;
+  position: fixed;
+  z-index: 999;
+  top: 0vw;
+  background-color: #fff;
 
   .date {
+    position: relative;
     display: flex;
     flex: 1;
     flex-direction: column;
