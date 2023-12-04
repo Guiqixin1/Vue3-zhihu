@@ -14,3 +14,8 @@ export const getArticelbefore = (date) => {
 export const getArticledetail = (id) => {
   return request.get(`/news/${id}`)
 }
+
+// 获取文章评论数
+export const getArticelcomment = (id) => {
+  return request.get(`/story-extra/${id}`)
+}

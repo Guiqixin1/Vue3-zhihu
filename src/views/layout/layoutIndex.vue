@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import image from '@/asset/TX1582_05.jpg'
 import articleList from '@/views/article/articleList.vue'
 import { getArticelLaest } from '@/api/article'
@@ -10,19 +10,26 @@ const list = ref([])
 const date = ref('')
 const month = ref('')
 const day = ref('')
+// 设置一个id数组
+const idArr = ref([])
 // 轮播图
 const imageList = ref([])
+
 // 一进入页面就发请求
 const getNew = async () => {
   const res = await getArticelLaest()
-  console.log(res)
+  // console.log(res)
   list.value = res.data.stories
   date.value = res.data.date
   month.value = date.value.substring(4, 6)
   day.value = date.value.substring(6, 8)
   imageList.value = res.data.top_stories
+  idArr.value = res.data.stories.map((item) => item.id)
+  // console.log(idArr.value)
 }
 getNew()
+
+// 路由跳转进入详情页
 const MouseEvent = (id) => {
   router.push(`/article/detail/${id}`)
 }
@@ -30,15 +37,27 @@ const MouseEvent = (id) => {
 const updateList = (newList, date) => {
   newList.forEach((item) => {
     item.date = date
+    idArr.value.push(item.id)
   })
   console.log(newList, date)
   list.value.push(...newList)
 }
+// 回到顶部,加上过渡效果
+const backTop = () => {
+  // document.documentElement.scrollTop = 0
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // 平滑滚动效果
+  })
+}
+defineComponent({
+  name: 'layoutIndex'
+})
 </script>
 <template>
   <!-- 顶部导航栏是固定定位 -->
   <div class="header">
-    <div class="date">
+    <div class="date" @click="backTop">
       <span class="day" style="color: black">{{ day }}</span>
       <span class="month">{{ month }}月</span>
     </div>

@@ -6,11 +6,12 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/layout',
-      component: () => import('@/views/layout/index.vue')
+      component: () => import('@/views/layout/layoutIndex.vue')
     },
     {
       path: '/layout',
-      component: () => import('@/views/layout/index.vue')
+      name: 'layoutIndex',
+      component: () => import('@/views/layout/layoutIndex.vue')
     },
     {
       path: '/article/list',
@@ -19,6 +20,10 @@ const router = createRouter({
     {
       path: '/article/detail/:id',
       component: () => import('@/views/article/index.vue')
+    },
+    {
+      path: '/collect',
+      component: () => import('@/views/collect/index.vue')
     }
   ]
 })

@@ -29,7 +29,7 @@ const onLoad = async () => {
   const day = before.getDate().toString().padStart(2, '0')
 
   const formattedDate = year + month + day
-  console.log(formattedDate) // 输出格式化后的日期字符串，例如：20231202
+  // console.log(formattedDate) // 输出格式化后的日期字符串，例如：20231202
   const res = await getArticelbefore(formattedDate)
   emits('update:list', res.data.stories, formattedDate)
   // 加载状态结束
@@ -53,9 +53,8 @@ const goDetail = (id) => {
       <!-- <van-cell v-for="item in list" :key="item" :title="item" /> -->
       <template v-for="(item, index) in list" :key="item.id">
         <div class="date" v-if="index % 5 === 0 && index > 0">
-          {{ item.date.substring(4, 6) }}月{{
-            item.date.substring(6, 8)
-          }}日—————————————————————
+          {{ item.date.substring(4, 6) }}月{{ item.date.substring(6, 8) }}日
+          ————————————————————
         </div>
         <div class="main" @click="goDetail(item.id)">
           <div class="left" style="overflow: hidden">
@@ -73,6 +72,11 @@ const goDetail = (id) => {
   </ul>
 </template>
 <style lang="scss" scoped>
+.date {
+  width: 100vw;
+  font-size: 4vw;
+  color: #999;
+}
 .main {
   width: 100vw;
   height: 20vw;
