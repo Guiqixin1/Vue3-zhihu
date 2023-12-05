@@ -4,8 +4,12 @@ import { getArticledetail, getArticelcomment } from '@/api/article.js'
 // 引入路由
 import { useRouter, useRoute } from 'vue-router'
 // 引入仓库
-import { useCollectStore } from '@/stores'
+import { useCollectStore, useArrayIdStore } from '@/stores'
+import { showToast } from 'vant'
+import 'vant/es/toast/style'
 const collectStore = useCollectStore()
+const ArrayIdStore = useArrayIdStore()
+// console.log(ArrayIdStore.arrayId)
 
 const route = useRoute()
 const router = useRouter()
@@ -17,10 +21,9 @@ const id = ref('')
 const Title = ref('')
 const image = ref('')
 
-// 在onmounted中发送请求，获取数据
-onMounted(async () => {
+const getPage = async () => {
   const res = await getArticledetail(route.params.id)
-  console.log(res)
+  // console.log(res)
   id.value = res.data.id
   Title.value = res.data.title
   image.value = res.data.image
@@ -46,6 +49,10 @@ onMounted(async () => {
   title.style.top = '82vw'
   title.style.left = '4vw'
   title.style.color = '#fff'
+}
+// 在onmounted中发送请求，获取数据
+onMounted(() => {
+  getPage()
 })
 
 // 底部定位
@@ -68,7 +75,7 @@ getExtraInfo()
 const isCollect = collectStore.collectList.some((item) => {
   return item.id === route.params.id
 })
-console.log(isCollect)
+// console.log(isCollect)
 let collect = ref(isCollect)
 const goCollect = () => {
   // 如果一开始不是确认收藏
@@ -81,13 +88,39 @@ const goCollect = () => {
       isCollect: true
     }
     collectStore.setCollect(obj)
+    showToast('收藏成功')
   } else {
     collectStore.removeCollect(route.params.id)
+    showToast('取消收藏成功')
+  }
+}
+const SwipeLeft = () => {
+  const ProxyArray = Object.values(ArrayIdStore.arrayId)
+  const index = ProxyArray.indexOf(+route.params.id)
+
+  if (index < ProxyArray.length - 1) {
+    router.replace(`/article/detail/${ProxyArray[index + 1]}`)
+    getPage()
+    getExtraInfo()
+  }
+}
+const SwipeRight = () => {
+  const ProxyArray = Object.values(ArrayIdStore.arrayId)
+  const index = ProxyArray.indexOf(+route.params.id)
+  if (index > 0) {
+    router.replace(`/article/detail/${ProxyArray[index - 1]}`)
+    getPage()
+    getExtraInfo()
   }
 }
 </script>
 <template>
-  <div class="body" ref="body"></div>
+  <div
+    class="body"
+    ref="body"
+    v-touch:swipe.left="SwipeLeft"
+    v-touch:swipe.right="SwipeRight"
+  ></div>
   <div class="footer">
     <div class="footer-left">
       <van-icon name="arrow-left" @click="goback" />

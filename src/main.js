@@ -11,16 +11,15 @@ import pinia from '@/stores/index.js'
 // import { showDialog } from 'vant'
 // import 'vant/es/dialog/style'
 // // Toast
-// import { showToast } from 'vant'
-// import 'vant/es/toast/style'
 
 // 引入重置默认样式
 import '@/asset/reset.css'
-
+import Vue3TouchEvents from 'vue3-touch-events'
 const app = createApp(App)
 
 app.use(pinia)
 app.use(router)
 app.use(Vant)
+app.use(Vue3TouchEvents)
 
 app.mount('#app')

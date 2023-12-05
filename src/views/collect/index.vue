@@ -5,28 +5,55 @@ const router = useRouter()
 const collectStore = useCollectStore()
 const collectList = collectStore.collectList
 console.log(collectList)
+// 取消收藏
+const closeCollect = (id) => {
+  collectStore.removeCollect(id)
+}
 </script>
 <template>
-  <van-nav-bar title="我的收藏" left-arrow @click-left="onClickLeft" />
+  <van-nav-bar title="我的收藏" left-arrow @click-left="router.go(-1)" />
   <ul>
     <li
       v-for="item in collectList"
       :key="item.id"
       @click="router.push(`/article/detail/${item.id}`)"
     >
-      <div class="main">
-        <div class="left" style="overflow: hidden">
-          <div class="title">{{ item.title }}</div>
+      <van-swipe-cell>
+        <div class="main">
+          <div class="left" style="overflow: hidden">
+            <div class="title">{{ item.title }}</div>
+          </div>
+          <div class="right">
+            <img :src="item.image" alt="" />
+          </div>
         </div>
-        <div class="right">
-          <img :src="item.image" alt="" />
-        </div>
-      </div>
-      <div class="span">____________________________________________</div>
+        <div class="span">____________________________________________</div>
+        <template #right>
+          <van-button
+            square
+            text="取消收藏"
+            type="danger"
+            class="delete-button"
+            style="height: 100%"
+            @click="closeCollect(item.id)"
+          />
+        </template>
+      </van-swipe-cell>
     </li>
+    <div class="finishText">没有更多内容</div>
   </ul>
 </template>
 <style lang="scss" scoped>
+.finishText {
+  width: 100vw;
+  height: 15vw;
+  font-size: 5vw;
+  color: #999;
+  text-align: center;
+  line-height: 15vw;
+  // margin-top: 10vw;
+  background-color: #e8e8e8;
+}
 .main {
   width: 100vw;
   height: 20vw;

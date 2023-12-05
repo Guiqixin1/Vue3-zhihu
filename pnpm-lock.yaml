@@ -32,6 +32,9 @@ dependencies:
   vue-touch:
     specifier: 2.0.0-beta.4
     version: 2.0.0-beta.4
+  vue3-touch-events:
+    specifier: ^4.1.8
+    version: 4.1.8
 
 devDependencies:
   '@rushstack/eslint-patch':
@@ -3936,6 +3939,10 @@ packages:
       rollup-plugin-cleanup: 0.1.4
       rollup-plugin-commonjs: 7.1.0
       rollup-plugin-node-resolve: 2.1.1
+    dev: false
+
+  /vue3-touch-events@4.1.8:
+    resolution: {integrity: sha512-8Zs0mj5k/7R579JHsc5w1V2IqAkNlz2gJs18bRV4T5WyCMfd5sBf2ESJ2xR8z+n7ypgK8fQO5MmDOPal0Evf3Q==}
     dev: false
 
   /vue@3.3.8:

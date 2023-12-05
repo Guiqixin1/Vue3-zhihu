@@ -4,7 +4,9 @@ import image from '@/asset/TX1582_05.jpg'
 import articleList from '@/views/article/articleList.vue'
 import { getArticelLaest } from '@/api/article'
 import { useRouter } from 'vue-router'
-
+// 引入数组id的仓库
+import { useArrayIdStore } from '@/stores'
+const IdStore = useArrayIdStore()
 const router = useRouter()
 const list = ref([])
 const date = ref('')
@@ -26,6 +28,7 @@ const getNew = async () => {
   imageList.value = res.data.top_stories
   idArr.value = res.data.stories.map((item) => item.id)
   // console.log(idArr.value)
+  IdStore.setArrayId(idArr.value)
 }
 getNew()
 
@@ -39,9 +42,13 @@ const updateList = (newList, date) => {
     item.date = date
     idArr.value.push(item.id)
   })
-  console.log(newList, date)
+  // console.log(newList, date)
+  // console.log(idArr.value)
+  // idArr是首页中存储的数组id
+  IdStore.setArrayId(idArr.value)
   list.value.push(...newList)
 }
+
 // 回到顶部,加上过渡效果
 const backTop = () => {
   // document.documentElement.scrollTop = 0
@@ -50,6 +57,7 @@ const backTop = () => {
     behavior: 'smooth' // 平滑滚动效果
   })
 }
+
 defineComponent({
   name: 'layoutIndex'
 })
