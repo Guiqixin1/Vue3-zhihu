@@ -24,6 +24,14 @@ const router = createRouter({
     {
       path: '/collect',
       component: () => import('@/views/collect/index.vue')
+    },
+    {
+      path: '/user',
+      component: () => import('@/views/user/index.vue')
+    },
+    {
+      path: '/comments/:id',
+      component: () => import('@/views/comments/index.vue')
     }
   ]
 })

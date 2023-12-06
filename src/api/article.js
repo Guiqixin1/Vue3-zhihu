@@ -15,7 +15,17 @@ export const getArticledetail = (id) => {
   return request.get(`/news/${id}`)
 }
 
-// 获取文章评论数
+// 获取文章额外参数
 export const getArticelcomment = (id) => {
   return request.get(`/story-extra/${id}`)
+}
+
+// 获取新闻对应长评
+export const getArticelcommentlong = (id) => {
+  return request.get(`/story/${id}/long-comments`)
+}
+
+// 获取新闻对应短评
+export const getArticelcommentshort = (id) => {
+  return request.get(`/story/${id}/short-comments`)
 }

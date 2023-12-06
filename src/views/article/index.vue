@@ -125,7 +125,10 @@ const SwipeRight = () => {
     <div class="footer-left">
       <van-icon name="arrow-left" @click="goback" />
     </div>
-    <div class="footer-commont">
+    <div
+      class="footer-commont"
+      @click="router.push(`/comments/${route.params.id}`)"
+    >
       <van-icon name="comment-o" :badge="comments" />
     </div>
     <div class="footer-good">

@@ -27,7 +27,7 @@ const closeCollect = (id) => {
             <img :src="item.image" alt="" />
           </div>
         </div>
-        <div class="span">____________________________________________</div>
+        <van-divider />
         <template #right>
           <van-button
             square

@@ -71,7 +71,7 @@ defineComponent({
     </div>
 
     <div class="title">| 知乎日报</div>
-    <div class="image">
+    <div class="image" @click="router.push('user')">
       <img :src="image" alt="" />
     </div>
   </div>
